@@ -25,29 +25,39 @@
 <body>
   <div class="message">読み込み中...</div>
   <script>
-    // ここを自分のフォームIDとエントリIDに書き換える
     var FORM_ID = '1fKHlA0breAuk8U5MYgQNBPlgC3m9Xqrt-IyWj2K-z1U';
     var ENTRY_ID = 'entry.428705518';
+    var msg = document.querySelector('.message');
+
+    msg.textContent = 'LIFF初期化中...';
 
     liff.init({ liffId: '2010382843-t71DMNmj' })
       .then(function() {
+        msg.textContent = 'ログイン確認中...';
         if (!liff.isLoggedIn()) {
+          msg.textContent = 'ログインへ移動中...';
           liff.login();
           return;
         }
+        msg.textContent = 'プロフィール取得中...';
         return liff.getProfile();
       })
       .then(function(profile) {
-        if (!profile) return;
+        if (!profile) {
+          msg.textContent = 'プロフィールが取得できませんでした';
+          return;
+        }
+        msg.textContent = 'フォームへ移動中...';
         var userId = profile.userId;
         var formUrl = 'https://docs.google.com/forms/d/' + FORM_ID +
           '/viewform?usp=pp_url&' + ENTRY_ID + '=' + encodeURIComponent(userId);
-       
         window.location.href = formUrl;
       })
       .catch(function(err) {
-        document.querySelector('.message').textContent =
+        msg.textContent =
           'エラー: ' + (err.code || '') + ' / ' + (err.message || JSON.stringify(err));
         console.error(err);
       });
-  </scri
+  </script>
+</body>
+</html>
