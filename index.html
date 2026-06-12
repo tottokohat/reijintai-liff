@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>霊人体の健康診断</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f4f8;
+    }
+    .message {
+      text-align: center;
+      color: #555;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">読み込み中...</div>
+  <script>
+    // ここを自分のフォームIDとエントリIDに書き換える
+    var FORM_ID = 'ここにフォームIDを入力';
+    var ENTRY_ID = 'ここにentryIDを入力'; // 例: entry.123456789
+
+    liff.init({ liffId: 'ここにLIFF IDを入力' })
+      .then(function() {
+        if (!liff.isLoggedIn()) {
+          liff.login();
+          return;
+        }
+        return liff.getProfile();
+      })
+      .then(function(profile) {
+        if (!profile) return;
+        var userId = profile.userId;
+        var formUrl = 'https://docs.google.com/forms/d/' + FORM_ID +
+          '/viewform?usp=pp_url&' + ENTRY_ID + '=' + encodeURIComponent(userId);
+        window.location.href = formUrl;
+      })
+      .catch(function(err) {
+        document.querySelector('.message').textContent =
+          'エラーが発生しました。もう一度お試しください。';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
