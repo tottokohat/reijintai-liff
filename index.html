@@ -42,14 +42,11 @@
         var userId = profile.userId;
         var formUrl = 'https://docs.google.com/forms/d/' + FORM_ID +
           '/viewform?usp=pp_url&' + ENTRY_ID + '=' + encodeURIComponent(userId);
-        window.location.href = formUrl;
+        liff.openWindow({ url: formUrl, external: false });
       })
       .catch(function(err) {
         document.querySelector('.message').textContent =
           'エラー: ' + (err.code || '') + ' / ' + (err.message || JSON.stringify(err));
         console.error(err);
       });
-  </script>
-</body>
-</html>
-
+  </scri
