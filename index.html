@@ -44,6 +44,8 @@
           '/viewform?usp=pp_url&' + ENTRY_ID + '=' + encodeURIComponent(userId);
         liff.openWindow({ url: formUrl, external: false });
       })
+       window.location.href = formUrl;
+      })
       .catch(function(err) {
         document.querySelector('.message').textContent =
           'エラー: ' + (err.code || '') + ' / ' + (err.message || JSON.stringify(err));
