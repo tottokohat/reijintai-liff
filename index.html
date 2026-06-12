@@ -42,9 +42,8 @@
         var userId = profile.userId;
         var formUrl = 'https://docs.google.com/forms/d/' + FORM_ID +
           '/viewform?usp=pp_url&' + ENTRY_ID + '=' + encodeURIComponent(userId);
-        liff.openWindow({ url: formUrl, external: false });
-      })
-       window.location.href = formUrl;
+       
+        window.location.href = formUrl;
       })
       .catch(function(err) {
         document.querySelector('.message').textContent =
