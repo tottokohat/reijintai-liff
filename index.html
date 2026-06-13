@@ -47,10 +47,10 @@
           msg.textContent = 'プロフィールが取得できませんでした';
           return;
         }
-        msg.textContent = 'フォームへ移動中...';
         var userId = profile.userId;
         var gasUrl = 'https://script.google.com/macros/s/AKfycbz487b1jtiJhOEC6b701HL9cJFpKRJ6NDsSPbewxr3k6Vz43LgsaabEvfvNas60OFcB/exec?userId=' + encodeURIComponent(userId);
-        window.location.href = gasUrl;
+        msg.textContent = 'ブラウザでフォームを開いています...';
+        liff.openWindow({ url: gasUrl, external: true });
       })
       .catch(function(err) {
         msg.textContent =
