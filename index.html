@@ -49,9 +49,8 @@
         }
         msg.textContent = 'フォームへ移動中...';
         var userId = profile.userId;
-        var formUrl = 'https://docs.google.com/forms/d/' + FORM_ID +
-          '/viewform?usp=pp_url&' + ENTRY_ID + '=' + encodeURIComponent(userId);
-        window.location.href = formUrl;
+        var gasUrl = 'https://script.google.com/macros/s/AKfycbz487b1jtiJhOEC6b701HL9cJFpKRJ6NDsSPbewxr3k6Vz43LgsaabEvfvNas60OFcB/exec?userId=' + encodeURIComponent(userId);
+        window.location.href = gasUrl;
       })
       .catch(function(err) {
         msg.textContent =
