@@ -49,8 +49,8 @@
         }
         var userId = profile.userId;
         var gasUrl = 'https://script.google.com/macros/s/AKfycbz487b1jtiJhOEC6b701HL9cJFpKRJ6NDsSPbewxr3k6Vz43LgsaabEvfvNas60OFcB/exec?userId=' + encodeURIComponent(userId);
-        msg.textContent = 'ブラウザでフォームを開いています...';
-        liff.openWindow({ url: gasUrl, external: true });
+                msg.textContent = 'フォームへ移動中...';
+        window.location.href = gasUrl;
       })
       .catch(function(err) {
         msg.textContent =
